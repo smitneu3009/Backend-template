@@ -1,26 +1,32 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import colors from 'colors';
-import morgan from 'morgan';
-import connection from './db.js';
+// Importing necessary modules
+import express from 'express'; // Express framework for building the server
+import dotenv from 'dotenv'; // dotenv for loading environment variables from .env file
+import cors from 'cors'; // CORS middleware for handling Cross-Origin Resource Sharing
+import colors from 'colors'; // colors for adding color to console logs
+import morgan from 'morgan'; // morgan for logging HTTP requests
+import connection from './db.js'; // importing the database connection function
 
+// Load environment variables from .env file
 dotenv.config();
 
-const app = express();
+const app = express(); // Initialize express application
 
+// CORS configuration
 app.use(cors({
-    methods: ['GET', 'POST', 'DELETE', 'PUT'], // specify allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // specify allowed headers
-    credentials: true, // enable passing cookies across origins
+    methods: ['GET', 'POST', 'DELETE', 'PUT'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    credentials: true, // Enable passing cookies across origins
 }));
-app.use(express.json());
-app.use(morgan('dev'));
 
-const PORT = process.env.PORT || 5000;
+app.use(express.json()); // Middleware to parse JSON requests
+app.use(morgan('dev')); // HTTP request logger
 
+const PORT = process.env.PORT || 5000; // Set the port from environment variables or default to 5000
+
+// Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`.green.bold);
-})
+    console.log(`Server is running on port ${PORT}`.green.bold); // Log that the server is running
+});
 
+// Connect to the database
 connection();

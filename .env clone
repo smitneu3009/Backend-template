@@ -1,0 +1,9 @@
+# Copy this file to .env and replace the placeholders with your actual values
+
+# MongoDB connection URL
+MONGODB_URL= ""     //paste your mongodb URL from localhost or from Mongodb Atlas 
+
+# Application port
+PORT = 8000
+
+
