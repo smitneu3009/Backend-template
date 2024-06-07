@@ -15,8 +15,8 @@ jobs:
         ports:
           - 3307:3306
         env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test_db
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -32,7 +32,7 @@ jobs:
         run: npm install
 
       - name: Run MySQL container
-        run: docker run -d --name mysql-container -p 3307:3306 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test_db mysql:5.7
+        run: docker run -d --name mysql-container -p 3307:3306 -e MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_PASSWORD }} -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} mysql:5.7
 
       - name: Wait for MySQL
         run: sleep 15 
