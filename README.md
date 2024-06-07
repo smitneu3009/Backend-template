@@ -14,7 +14,7 @@ Before you begin, ensure you have the following installed on your machine:
 
 ## Quick Start
 
-1. **Clone the Repository:**
+1. **Clone the Repository:**  
 
     ```bash
     git clone https://github.com/smitneu3009/Backend-template.git

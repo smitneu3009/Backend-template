@@ -1,20 +1,26 @@
 // Importing necessary modules
-import mongoose from 'mongoose'; // Mongoose for MongoDB interaction
-import dotenv from 'dotenv'; // dotenv for loading environment variables from .env file
-import colors from 'colors'; // colors for adding color to console logs
+import mysql from 'mysql2/promise'; // Importing mysql2
+import dotenv from 'dotenv'; // Importing dotenv for loading environment variables
 
 // Load environment variables from .env file
 dotenv.config();
 
 // Asynchronous function to connect to the database
 const connection = async () => {
-    const URL = process.env.MONGODB_URL; // Get the MongoDB URL from environment variables
     try {
-        // Connect to MongoDB
-        await mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true });
+        // Create a connection to the MySQL database
+        const db = await mysql.createConnection({
+            host: process.env.MYSQL_HOST,
+            user: process.env.MYSQL_USER,
+            password: process.env.MYSQL_PASSWORD,
+            database: process.env.MYSQL_DATABASE
+        });
+
         console.log('Database connected successfully'.bgGreen.bold); // Log success message
+        return db;
     } catch (error) {
         console.log('Error while connecting with the database'.bgRed.bold); // Log error message
+        throw error;
     }
 };
 
