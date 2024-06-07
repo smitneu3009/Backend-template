@@ -25,7 +25,7 @@ app.get('/api/users', async (req, res) => {
         const [rows] = await db.query('SELECT * FROM users');
         res.json({ users: rows });
     } catch (error) {
-        console.error('Error retrieving users from the database'.bgRed.bold);
+        console.error('Error retrieving users from the database:', error.message.bgRed.bold);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
