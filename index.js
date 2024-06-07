@@ -20,9 +20,14 @@ app.use(morgan('dev'));
 
 // Define your routes here
 app.get('/api/users', async (req, res) => {
-    const db = await connection();
-    const [rows] = await db.query('SELECT * FROM users');
-    res.json({ users: rows });
+    try {
+        const db = await connection();
+        const [rows] = await db.query('SELECT * FROM users');
+        res.json({ users: rows });
+    } catch (error) {
+        console.error('Error retrieving users from the database'.bgRed.bold);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 if (process.env.NODE_ENV !== 'test') {
