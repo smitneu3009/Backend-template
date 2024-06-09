@@ -4,14 +4,6 @@ This repository provides a template for setting up a backend server using Node.j
 
 ---
 
-## Prerequisites
-
-Before you begin, ensure you have the following installed on your machine:
-
-- [Node.js](https://nodejs.org/)
-- npm (Node package manager, comes with Node.js)
-- [Git](https://git-scm.com/)
-
 ## Quick Start
 
 1. **Clone the Repository:**  
@@ -31,15 +23,11 @@ Before you begin, ensure you have the following installed on your machine:
 
     - Copy the `.env.clone` file to `.env`:
 
-        ```bash
-        cp .env.clone .env
-        ```
-
     - Open the `.env` file and replace the placeholders with your actual values:
 
         ```plaintext
         # MongoDB connection URL
-        MONGODB_URL= " "  # Replace this with your MongoDB connection URL. You can find this URL in your MongoDB Atlas dashboard. Navigate to your cluster, click "Connect", and then choose "Connect your application". Copy the provided connection string.
+        MONGODB_URL= " " 
 
         # Application port
         PORT=8000
@@ -68,8 +56,5 @@ Here’s a brief overview of the project structure:
 - Ensure that your MongoDB instance is running and accessible from your application.
 - For further customization, you can modify the middleware settings, routes, and other configurations as per your requirements.
 
----
-
-## License
 
 This project is licensed under the [MIT License](LICENSE).
